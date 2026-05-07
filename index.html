@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c2bdemo — Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<!-- No MCP beacon here — loan payoff is captured via Supabase, not MCP -->
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">c2bdemo</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="mortgage.html">Mortgage</a>
+    <a href="heloc.html">HELOC</a>
+    <a href="personal.html">Personal Loan</a>
+  </div>
+  <div class="nav-user">Sarah Chen</div>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">Good afternoon, Sarah</h1>
+  <p class="page-sub">Your auto loan is almost paid off.</p>
+
+  <div class="stats">
+    <div class="card">
+      <div class="card-label">Savings</div>
+      <div class="card-value">$67,340</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Credit Score</div>
+      <div class="card-value">762</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Outstanding</div>
+      <div class="card-value" id="outstandingVal">$547.32</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Tier</div>
+      <div class="card-value">Gold</div>
+    </div>
+  </div>
+
+  <div class="card" id="loanCard">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <span class="loan-badge">Auto Loan</span>
+      <span class="status status-active" id="loanStatus">Active</span>
+    </div>
+    <div class="loan-num">LN-2020-00142</div>
+    <div class="loan-balance" id="loanBalance">$547.32</div>
+    <div class="loan-original">of $28,500.00 original</div>
+    <div class="progress"><div class="progress-fill" id="progressBar" style="width:98.1%"></div></div>
+    <div class="progress-text" id="progressText">98.1% paid</div>
+
+    <div class="loan-grid">
+      <div><label>Rate</label><span>3.750%</span></div>
+      <div><label>Monthly</label><span>$521.14</span></div>
+      <div><label>Term</label><span>60 mo</span></div>
+      <div><label>Collateral</label><span>2019 Civic</span></div>
+    </div>
+
+    <button class="btn" id="payoffBtn" onclick="payoffLoan()">Pay off remaining $547.32</button>
+  </div>
+</div>
+
+<script>
+let paidOff = false;
+
+function payoffLoan() {
+  if (paidOff) return;
+  const btn = document.getElementById('payoffBtn');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+
+  setTimeout(() => {
+    paidOff = true;
+    document.getElementById('loanBalance').textContent = '$0.00';
+    document.getElementById('outstandingVal').textContent = '$0.00';
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('progressText').textContent = '100% paid';
+    document.getElementById('loanStatus').textContent = 'Paid Off';
+    document.getElementById('loanStatus').className = 'status status-paid';
+    btn.textContent = 'Loan paid off ✓';
+    btn.style.background = '#555';
+
+    // Show toast
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = 'Auto loan paid off. Event fired.';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }, 1500);
+}
+</script>
+</body>
+</html>

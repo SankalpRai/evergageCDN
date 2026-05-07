@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c2bdemo — Home Mortgage</title>
+<link rel="stylesheet" href="style.css">
+<!-- MCP BEACON: Replace YOUR_ACCOUNT and YOUR_DATASET below -->
+<script type="text/javascript" src="//cdn.evgnet.com/beacon/nkroehlmerkle/c2bdemo/scripts/evergage.min.js"></script></head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">c2bdemo</div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="mortgage.html" class="active">Mortgage</a>
+    <a href="heloc.html">HELOC</a>
+    <a href="personal.html">Personal Loan</a>
+  </div>
+  <div class="nav-user">Sarah Chen</div>
+</nav>
+
+<div class="container">
+  <div class="product-hero">
+    <h1>Home Mortgage</h1>
+    <div class="product-rate">6.125%</div>
+    <div class="product-rate-label">APR as low as</div>
+    <p class="product-desc">Lock in competitive rates on your dream home. With your credit profile, you qualify for premium terms with as little as 10% down.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Features</div>
+    <ul class="features">
+      <li>Up to $650K with 10% down</li>
+      <li>Fixed or adjustable rate options</li>
+      <li>Pre-qualified in minutes</li>
+      <li>No origination fee for Gold members</li>
+      <li>Rate lock for 60 days</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Quick estimate</div>
+    <div style="margin-top:12px">
+      <label style="font-size:13px;color:#666">Home price</label>
+      <input type="range" min="100000" max="800000" value="400000" id="priceSlider" oninput="calcPayment()" style="width:100%;margin:8px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#999">
+        <span>$100K</span>
+        <span id="priceDisplay" style="color:#111;font-weight:600">$400,000</span>
+        <span>$800K</span>
+      </div>
+      <div style="margin-top:16px;font-size:14px;color:#555">
+        Estimated monthly: <strong id="monthlyEst">$2,432</strong>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="applyNow('Mortgage')" style="margin-top:8px">Start pre-qualification</button>
+  <button class="btn btn-outline" onclick="downloadBrochure('Mortgage')" style="margin-top:8px">Download brochure</button>
+</div>
+
+<script>
+function calcPayment() {
+  const price = document.getElementById('priceSlider').value;
+  document.getElementById('priceDisplay').textContent = '$' + Number(price).toLocaleString();
+  const loan = price * 0.9;
+  const r = 0.06125 / 12;
+  const n = 360;
+  const monthly = loan * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+  document.getElementById('monthlyEst').textContent = '$' + Math.round(monthly).toLocaleString();
+}
+
+function applyNow(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' application started. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function downloadBrochure(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' brochure downloaded. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+</script>
+</body>
+</html>

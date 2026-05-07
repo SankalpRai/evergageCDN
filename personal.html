@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c2bdemo — Personal Loan</title>
+<link rel="stylesheet" href="style.css">
+<!-- MCP BEACON: Replace YOUR_ACCOUNT and YOUR_DATASET below -->
+<script type="text/javascript" src="//cdn.evgnet.com/beacon/nkroehlmerkle/c2bdemo/scripts/evergage.min.js"></script></head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">c2bdemo</div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="mortgage.html">Mortgage</a>
+    <a href="heloc.html">HELOC</a>
+    <a href="personal.html" class="active">Personal Loan</a>
+  </div>
+  <div class="nav-user">Sarah Chen</div>
+</nav>
+
+<div class="container">
+  <div class="product-hero">
+    <h1>Personal Loan</h1>
+    <div class="product-rate">8.990%</div>
+    <div class="product-rate-label">Fixed APR from</div>
+    <p class="product-desc">Unsecured funding for whatever life brings. Fast approval, fixed payments, no collateral required.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Features</div>
+    <ul class="features">
+      <li>$5,000 to $50,000 available</li>
+      <li>Fixed rate — no surprises</li>
+      <li>Funds deposited in 24 hours</li>
+      <li>No prepayment penalty</li>
+      <li>Terms from 12 to 60 months</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Common uses</div>
+    <div style="margin-top:12px;font-size:14px;color:#555;line-height:1.7">
+      <p>Debt consolidation, home improvements, medical expenses, major purchases, or unexpected costs. One fixed monthly payment makes budgeting simple.</p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="applyNow('Personal Loan')" style="margin-top:8px">Check your rate</button>
+  <button class="btn btn-outline" onclick="downloadBrochure('Personal Loan')" style="margin-top:8px">See full terms</button>
+</div>
+
+<script>
+function applyNow(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' application started. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function downloadBrochure(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' brochure downloaded. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+</script>
+</body>
+</html>

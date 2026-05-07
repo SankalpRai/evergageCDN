@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c2bdemo — Home Equity Line</title>
+<link rel="stylesheet" href="style.css">
+<!-- MCP BEACON: Replace YOUR_ACCOUNT and YOUR_DATASET below -->
+<script type="text/javascript" src="//cdn.evgnet.com/beacon/nkroehlmerkle/c2bdemo/scripts/evergage.min.js"></script></head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">c2bdemo</div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="mortgage.html">Mortgage</a>
+    <a href="heloc.html" class="active">HELOC</a>
+    <a href="personal.html">Personal Loan</a>
+  </div>
+  <div class="nav-user">Sarah Chen</div>
+</nav>
+
+<div class="container">
+  <div class="product-hero">
+    <h1>Home Equity Line of Credit</h1>
+    <div class="product-rate">7.250%</div>
+    <div class="product-rate-label">Variable APR from</div>
+    <p class="product-desc">Tap into your home's equity for renovations, education, or debt consolidation. Draw what you need, when you need it.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Features</div>
+    <ul class="features">
+      <li>Borrow up to 85% of home equity</li>
+      <li>Interest-only payment option</li>
+      <li>No closing costs</li>
+      <li>10-year draw period</li>
+      <li>Convert to fixed rate anytime</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-label">How it works</div>
+    <div style="margin-top:12px;font-size:14px;color:#555;line-height:1.7">
+      <p style="margin-bottom:12px">A HELOC works like a credit card secured by your home. You get approved for a credit limit based on your equity, then draw funds as needed during the draw period.</p>
+      <p>You only pay interest on what you borrow — not the full limit. After the draw period, you repay the balance over a fixed term.</p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="applyNow('HELOC')" style="margin-top:8px">Check your equity</button>
+  <button class="btn btn-outline" onclick="downloadBrochure('HELOC')" style="margin-top:8px">Download guide</button>
+</div>
+
+<script>
+function applyNow(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' application started. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function downloadBrochure(product) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = product + ' brochure downloaded. Event tracked.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+</script>
+</body>
+</html>
